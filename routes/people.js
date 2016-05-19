@@ -47,6 +47,14 @@ router.get('/new/', function(req, res) {
 // IMPLEMENTAR AQUI
 
 /* DELETE uma pessoa */
+router.delete('/:id', function(req, res) {
+  var id = db.escape(req.params.id);
+  var query = 'DELETE FROM person WHERE id = ' + id;
+  db.query(query, function(err, result) {
+    if (err)  { res.send(401, 'Pessoa inexistente'); }
+    else      { res.redirect('/people/'); }
+  });
+});
 // IMPLEMENTAR AQUI
 
 module.exports = router;
