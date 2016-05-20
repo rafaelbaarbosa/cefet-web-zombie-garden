@@ -44,6 +44,14 @@ router.get('/new/', function(req, res) {
 
 
 /* POST registra uma nova pessoa */
+router.post('/', function(req, res){
+  var name = req.body.name;
+  var query = 'INSERT INTO person (name) VALUES ("' + name + '")';
+  db.query(query, function(err, result) {
+    if (err)  { res.send(401, 'Erro ao inserir pessoa ' + name); }
+    else      { res.redirect('/people/'); }
+  });
+});
 // IMPLEMENTAR AQUI
 
 /* DELETE uma pessoa */
